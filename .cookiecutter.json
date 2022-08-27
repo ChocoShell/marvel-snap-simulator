@@ -1,0 +1,14 @@
+{
+  "_output_dir": "E:\\Users\\Jonathan\\Coding\\Python",
+  "_template": "gh:cjolowicz/cookiecutter-hypermodern-python",
+  "author": "Jonathan Reyes",
+  "copyright_year": "2022",
+  "development_status": "Development Status :: 1 - Planning",
+  "email": "No Email",
+  "friendly_name": "Marvel Snap Simulator",
+  "github_user": "ChocoShell",
+  "license": "GPL-3.0",
+  "package_name": "marvel_snap_simulator",
+  "project_name": "marvel-snap-simulator",
+  "version": "0.0.0"
+}
