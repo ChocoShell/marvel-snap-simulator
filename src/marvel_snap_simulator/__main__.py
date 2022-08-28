@@ -1,11 +1,41 @@
 """Command-line interface."""
 import click
 
+from .cards import Card
+from .decks import Deck
+from .game import Game
+from .gamelocations import Location
+from .players import Player
+
 
 @click.command()
 @click.version_option()
 def main() -> None:
     """Marvel Snap Simulator."""
+    card_list = [
+        Card("Misty Knight", 1, 2),
+        Card("Angel", 1, 2),
+        Card("Uatu The Watcher", 1, 2),
+        Card("Quicksilver", 1, 2),
+        Card("Shocker", 2, 3),
+        Card("Armor", 2, 3),
+        Card("Swarm", 2, 3),
+        Card("Cyclops", 3, 4),
+        Card("Sabretooth", 3, 4),
+        Card("Thing", 4, 6),
+        Card("Abomination", 5, 8),
+        Card("Hulk", 6, 11),
+    ]
+    deck_one = Deck("Deck One", card_list)
+    deck_two = Deck("Deck Two", card_list)
+    player_one = Player("Player One", deck_one)
+    player_two = Player("Player Two", deck_two)
+    board_locations = [Location(), Location(), Location()]
+    print("Starting Game")
+    game = Game(player_one, player_two, board_locations)
+    for _ in range(6):
+        game.start_turn()
+    print("Game Done")
 
 
 if __name__ == "__main__":
