@@ -4,7 +4,7 @@ import click
 from .cards import Card
 from .decks import Deck
 from .game import Game
-from .gamelocations import Location
+from .locations.gamelocations import Location
 from .players import Player
 
 
@@ -33,7 +33,7 @@ def main() -> None:
     board_locations = [Location(), Location(), Location()]
     print("Starting Game")
     game = Game(player_one, player_two, board_locations)
-    for _ in range(6):
+    while not game.has_game_ended:
         game.start_turn()
     print("Game Done")
 

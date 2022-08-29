@@ -25,9 +25,9 @@ class DumbAIMixin:
                     break
             current_energy -= 1
         for i, location in enumerate(game.locations):
-            if not location.players[location_score_index].is_full:
-                me = location.players[location_score_index].score
-                opp = location.players[(location_score_index + 1) % 2].score
+            if not location.sides[location_score_index].is_full:
+                me = location.sides[location_score_index].score
+                opp = location.sides[(location_score_index + 1) % 2].score
                 if me <= opp:
                     play_location = i
                     break

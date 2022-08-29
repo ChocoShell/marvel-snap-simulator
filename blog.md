@@ -17,5 +17,11 @@ Implemented a lot of the groundwork. The program will play a game vs 2 players w
 The code is very messy.
 The next step is adding in a card with an effect.
 
+## 2022-08-28
+
+I decided to go the reinforcement learning route.
+
+This means we need to make sure the simulator is accurate.
+
 [marvel snap]: https://www.marvelsnap.com/
 [marvelsnap.io]: (https://marvelsnap.io/card-database/)

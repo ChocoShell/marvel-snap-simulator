@@ -1,8 +1,8 @@
 from random import choice
 from typing import List
 
-from .gamelocations import GameLocations
-from .gamelocations import Location
+from .locations.gamelocations import Board
+from .locations.gamelocations import Location
 from .players import Player
 from .plays import Play
 
@@ -12,13 +12,15 @@ class Game:
         self, player_one: Player, player_two: Player, board_locations: List[Location]
     ):
         # Whats in a game?
+        # This is not gonna work for future work.
+        # Change this to a dictionary with one two keys
         self.players = [player_one, player_two]
         for player in self.players:
             player.draw_starting_hand()
 
-        self.player_initiative = self.players[0]
+        self.player_initiative = self.players[0]  # .get("one")
 
-        self.locations = GameLocations(board_locations, self.players)
+        self.locations = Board(board_locations, self.players)
         self.turn = 0
 
     def start_turn(self):
@@ -31,6 +33,9 @@ class Game:
             self.play(player, plays)
 
         winning_player = self.get_winning_player()
+        print()
+        for i, location in enumerate(self.locations, start=1):
+            print(f"\tScore at Location {i}: {[side.score for side in location.sides]}")
         if self.has_game_ended:
             return self.get_game_outcome(winning_player)
         else:
@@ -40,7 +45,7 @@ class Game:
         player_index = 0 if player == self.players[0] else 1
         for play in plays:
             if play.card.cost <= self.turn:
-                self.locations[play.location].players[player_index].add(play.card)
+                self.locations[play.location].sides[player_index].add(play.card)
                 print(
                     f"\t{player.name} plays {play.card.name}"
                     f" at location {play.location+1}"
@@ -56,8 +61,8 @@ class Game:
         p1_total = 0
         p2_total = 0
         for location in self.locations:
-            p1_score = location.players[0].score
-            p2_score = location.players[1].score
+            p1_score = location.sides[0].score
+            p2_score = location.sides[1].score
             if p1_score > p2_score:
                 total += 1
             elif p1_score < p2_score:
@@ -77,6 +82,7 @@ class Game:
             print(f"Player {player.name} won!")
         else:
             print("It was a draw...")
+        return player
 
     @property
     def has_game_ended(self):
