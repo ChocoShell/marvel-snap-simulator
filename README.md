@@ -29,14 +29,6 @@
 
 - TODO
 
-## Installation
-
-You can install _Marvel Snap Simulator_ via [pip] from [PyPI]:
-
-```console
-$ pip install marvel-snap-simulator
-```
-
 ## Usage
 
 Please see the [Command-line Reference] for details.

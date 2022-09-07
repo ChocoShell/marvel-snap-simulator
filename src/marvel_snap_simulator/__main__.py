@@ -1,7 +1,8 @@
 """Command-line interface."""
 import click
 
-from .cards import Card
+from .cards.base import Card
+from .cards.cable import Cable
 from .decks import Deck
 from .game import Game
 from .locations.gamelocations import Location
@@ -27,9 +28,9 @@ def main() -> None:
         Card("Hulk", 6, 11),
     ]
     deck_one = Deck("Deck One", card_list)
-    deck_two = Deck("Deck Two", card_list)
-    player_one = Player("Player One", deck_one)
-    player_two = Player("Player Two", deck_two)
+    deck_two = Deck("Deck Two", [Cable()] * 12)
+    player_one = Player("Vanilla Steve", deck_one)
+    player_two = Player("Cable Man", deck_two)
     board_locations = [Location(), Location(), Location()]
     print("Starting Game")
     game = Game(player_one, player_two, board_locations)

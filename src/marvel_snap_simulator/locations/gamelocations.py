@@ -27,17 +27,3 @@ class GameLocation:
             if game_player.player == player:
                 return game_player.add(card)
         raise PlayerNotFoundError("Player not found")
-
-
-class Board:
-    # This class is a mess
-    def __init__(self, locations: List[Location], players: List[Player]):
-        self.locations = [
-            GameLocation(location, _players=players) for location in locations
-        ]
-
-    def __iter__(self):
-        yield from self.locations
-
-    def __getitem__(self, item):
-        return self.locations[item]

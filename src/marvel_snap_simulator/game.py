@@ -1,7 +1,7 @@
 from random import choice
 from typing import List
 
-from .locations.gamelocations import Board
+from .locations.boards import Board
 from .locations.gamelocations import Location
 from .players import Player
 from .plays import Play
@@ -14,6 +14,11 @@ class Game:
         # Whats in a game?
         # This is not gonna work for future work.
         # Change this to a dictionary with one two keys
+        # Should I keep player scores in this class?
+        # Score is a function of:
+        #   location effect *
+        #   (card_score + card_effects) +
+        #   outside effects (klaw, omega red)
         self.players = [player_one, player_two]
         for player in self.players:
             player.draw_starting_hand()
@@ -45,6 +50,7 @@ class Game:
         player_index = 0 if player == self.players[0] else 1
         for play in plays:
             if play.card.cost <= self.turn:
+                play.card.play(player, self)
                 self.locations[play.location].sides[player_index].add(play.card)
                 print(
                     f"\t{player.name} plays {play.card.name}"
@@ -55,6 +61,14 @@ class Game:
                     f"\tERROR: {player.name} tried to play {play.card.name}"
                     f" at location {play.location+1}"
                 )
+
+    def get_player(self, player, get_opponent=False):
+        for game_player in self.players:
+            if get_opponent and player != game_player:
+                return game_player
+            if not get_opponent and player == game_player:
+                return game_player
+        return None
 
     def get_winning_player(self):
         total = 0
