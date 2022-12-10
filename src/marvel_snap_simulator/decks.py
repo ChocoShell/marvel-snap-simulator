@@ -1,7 +1,7 @@
 from random import shuffle
 from typing import List
 
-from marvel_snap_simulator.cards import Card
+from marvel_snap_simulator.cards.base import Card
 
 
 class Deck:
