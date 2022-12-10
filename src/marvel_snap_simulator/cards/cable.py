@@ -1,4 +1,4 @@
-from .cards import OnRevealCard
+from .base import OnRevealCard
 
 
 class Cable(OnRevealCard):

@@ -2,9 +2,8 @@ from dataclasses import dataclass
 from dataclasses import field
 from typing import List
 
-from marvel_snap_simulator.cards import Card
+from marvel_snap_simulator.cards.base import Card
 from marvel_snap_simulator.players import Player
-
 
 @dataclass
 class GameLocationSide:

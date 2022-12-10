@@ -1,5 +1,5 @@
 from .ai import DumbAIMixin
-from .cards import Card
+from .cards.base import Card
 
 
 HAND_LIMIT = 7
